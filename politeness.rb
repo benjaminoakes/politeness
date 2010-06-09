@@ -34,6 +34,8 @@ module Politeness
   def self.wrap_method(klass, name)
     method_hash = klass.const_get(:METHOD_HASH) || fail("No method hash")
     method_hash[name] = klass.instance_method(name)
+    
+    # I'd like to be able to use a proc/block here.  I need to look up the exact reason in the metaprogramming screencasts, but there's a problem with Ruby 1.8 that makes it so that you have to use a string.  The problem isn't present in 1.9+ apparently, but I've yet to try that out.
     klass.class_eval %{
       def #{name}(*args, &block)  
         $method_call_count += 1.0
