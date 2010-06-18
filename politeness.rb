@@ -5,6 +5,7 @@
 # Author: Benjamin Oakes <hello@benjaminoakes.com>
 
 module Politeness 
+  # These are global to prevent scoping issues.  It's not a serious program, so I don't feel too bad about using them.
   $method_call_count = 0.0
   $politeness = 0.0
 
